@@ -1,0 +1,309 @@
+<div id="main">
+
+<br>
+<FORM name=resbox onsubmit="return false">
+<TABLE width=600 class=calcplatform cellSpacing=1 cellPadding=1 border=1>
+<TBODY>
+<TR height=8></TR>
+<TR>
+<TD width=420 colspan=2>
+   <!--<INPUT class=calcresult style="width:420px;font-size:25px; BORDER-RIGHT: #000000 1px solid; BORDER-TOP: #000000 1px solid; BORDER-LEFT: #000000 1px solid; BORDER-BOTTOM: #000000 1px solid; TEXT-ALIGN: LEFT" name=result onfocus=blur() value=""></INPUT>-->
+   <INPUT class=nbox onchange='refreshresult()' style="width:600px;font-size:25px; COLOR: #000000; FONT-STYLE: normal; BACKGROUND-COLOR: #e2e2e2; font-wieght: 800;BORDER-RIGHT: #000000 1px solid; BORDER-TOP: #000000 1px solid; BORDER-LEFT: #000000 1px solid; BORDER-BOTTOM: #000000 1px solid; TEXT-ALIGN: LEFT" name=result value=""></INPUT>
+</TD>
+<TD width=150>
+	<INPUT class=calcbtn onclick=equals() type=button value== name=equalssign  style="width:60px;font-weight:bold;color:black;font-size:16px;background:#ffffff;"></INPUT>
+	<INPUT class=calcbtnequalright title="Undo" onclick="undocal()"  value=Undo name=undo  type=button style="width:60px;font-weight:bold;color:black;font-size:16px; background:#ffffff;"></INPUT></TD>
+</TD>
+</TR>
+<TR height=5></TR>
+<TR>
+<TD vAlign=top align=left width=200>
+  &nbsp;<INPUT onmousedown=calcBase(16) type=radio value=hex name=radiobase>
+  <SPAN onmousedown=calcBase(16) style="CURSOR: default; color: black"><b>Hex</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</SPAN>
+  </input>
+  <INPUT onmousedown=calcBase(10) type=radio CHECKED value=dec name=radiobase>
+  <SPAN onmousedown=calcBase(10) style="CURSOR: default; color: black"><b>Dec</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</SPAN>
+  </INPUT>
+  <INPUT onmousedown=calcBase(8) type=radio value=oct name=radiobase>
+  <SPAN onmousedown=calcBase(8) style="CURSOR: default; color: black"><b>Oct</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</SPAN>
+  </INPUT>
+  <INPUT onmousedown=calcBase(2) type=radio value=bin name=radiobase>
+  <SPAN onmousedown=calcBase(2) style="CURSOR: default; color: black"><b>Bin</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</SPAN>
+  </INPUT>
+</TD>
+<TD vAlign=top align=RIGHT width=300 COLSPAN=2>
+  <INPUT onmousedown="if(base==10){resbox.trigmeth[0].checked=true; angleConvert('deg')}" type=radio CHECKED value=deg name=trigmeth>
+  <SPAN onmousedown="if(base==10){resbox.trigmeth[0].checked=true; angleConvert('deg')}" style="CURSOR: default; COLOR: BLACK"><b>Deg</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</SPAN>
+  <INPUT onmousedown="if(base==10){resbox.trigmeth[1].checked=true; angleConvert('rad')}" type=radio value=rad name=trigmeth>
+  <SPAN onmousedown="if(base==10){resbox.trigmeth[1].checked=true; angleConvert('rad')}" style="CURSOR: default; COLOR: BLACK"><b>Rad</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</SPAN>
+  <INPUT onmousedown="if(base==10){resbox.trigmeth[2].checked=true; angleConvert('grad')}" type=radio value=grad name=trigmeth>
+  <SPAN onmousedown="if(base==10){resbox.trigmeth[2].checked=true; angleConvert('grad')}" style="CURSOR: default; COLOR: BLACK"><b>Grad</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</SPAN>
+</TR>
+</FORM>
+<TR height=5></TR>
+<FORM name=emcalc onsubmit="return false">
+<TR>
+  <TD width=600>
+	<TABLE width=300>
+	<TBODY>
+	<TR>
+	<TD align=middle width=104 COLSPAN=3><INPUT class=calcbtnequal onclick=equals() type=button value== name=equalssign  style="font-weight:bold;color:black;font-size:20px;background:#bbbbbb;" type=button value== name=equals></INPUT></TD>
+	<TD width=2></TD>
+	<TD align=middle width=104 COLSPAN=3><INPUT class=calcbtnequal onclick=clearAll() type=button value="Clear All" name=clearAC  style="font-weight:bold;color:black;font-size:15px;background:#bbbbbb;" type=button value== name=equals></INPUT></TD>
+	<TD width=2></TD>
+	<TD align=middle width=104 COLSPAN=3><INPUT class=calcbtnequal onclick=change("BKS") type=button value="BackSpace" name=backspace  style="font-weight:bold;color:black;font-size:15px;background:#bbbbbb;" type=button value== name=equals></INPUT></TD>
+	<TD width=2></TD>
+	</TR>
+	<TR height=3></TR>
+	<TR>
+	<TD align=middle width=48><INPUT class=calcbtn onclick=digit(7) type=button value=7 name=digit7 type=button style="font-size: 20px"></INPUT></TD>
+	<TD width=2></TD>
+	<TD align=middle width=48><INPUT class=calcbtn onclick=digit(8) type=button value=8 name=digit8  type=button style="font-size: 20px"></INPUT></TD>
+	<TD width=2></TD>
+	<TD align=middle width=48><INPUT class=calcbtn onclick=digit(9) type=button value=9 name=digit9  type=button style="font-size: 20px"></INPUT></TD>
+	<TD width=2></TD>
+	<TD align=middle width=48><INPUT class=calcbtnred  onclick="emoper('/')" type=button value="/" name=opDivide style="font-size:20px"></INPUT></TD>
+	<TD width=2></TD>
+	<TD align=middle width=48><INPUT class=calcbtncoral style="font-weight: bold" onclick="emoper('%')"  type=button value=Mod name=funcMod></INPUT></TD>
+	<TD width=2></TD>
+	<TD align=middle width=48><INPUT class=calcbtncoral style="font-weight: bold" onclick="emoper('and')"  type=button value=And name=binAnd></INPUT></TD>
+	</TR>
+	<TR height=1></TR>
+	<TR>
+	<TD align=middle width=48><INPUT class=calcbtn onclick=digit(4) type=button value=4 name=digit4 style="font-size: 20px"></INPUT></TD>
+	<TD width=2></TD>
+	<TD align=middle width=48><INPUT class=calcbtn onclick=digit(5) type=button value=5 name=digit5 style="font-size: 20px"></INPUT></TD>
+	<TD width=2></TD>
+	<TD align=middle width=48><INPUT class=calcbtn onclick=digit(6) type=button value=6 name=digit6 style="font-size: 20px"></INPUT></TD>
+	<TD width=2></TD>
+	<TD align=middle width=48><INPUT class=calcbtnred onclick="emoper('*')" value="&#215;" name=opMultiply type=button style="font-size:20px"></INPUT></TD>
+	<TD width=2></TD>
+	<TD align=middle width=48><INPUT class=calcbtncoral style="font-weight: bold" onclick="emoper('or')"  value=Or name=binOr type=button></INPUT></TD>
+	<TD width=2></TD>
+	<TD align=middle width=48><INPUT class=calcbtncoral style="font-weight: bold" onclick="emoper('xor')"  type=button value=Xor name=binXor></INPUT></TD>
+	</TR>
+	<TR height=1></TR>
+	<TR>
+	<TD align=middle width=48><INPUT class=calcbtn onclick=digit(1) value=1 name=digit1  type=button style="font-size: 20px"></INPUT></TD>
+	<TD width=2></TD>
+	<TD align=middle width=48><INPUT class=calcbtn onclick=digit(2) value=2 name=digit2  type=button style="font-size: 20px"></INPUT></TD>
+	<TD width=2></TD>
+	<TD align=middle width=48><INPUT class=calcbtn onclick=digit(3) value=3 name=digit3  type=button style="font-size: 20px"></INPUT></TD>
+	<TD width=2></TD>
+	<TD align=middle width=48><INPUT class=calcbtnred  onclick="emoper('-')" value="&#150;" name=opMinus type=button style="font-size:20px"></INPUT></TD>
+	<TD width=2></TD>
+	<TD align=middle width=48><INPUT class=calcbtncoral style="font-weight: bold" onclick="emfunc('ceil')"  type=button value=Ceil title="ceiling a decimal" name=binLsh></INPUT></TD>
+	<TD width=2></TD>
+	<TD align=middle width=48><INPUT class=calcbtncoral style="font-weight: bold" onclick="emfunc('flr')"  type=button value=Flr title="floor a decimal" name=binRsh type=button></INPUT></TD>
+	</TR>
+	<TR height=1></TR>
+	<TR>
+	<TD align=middle width=48><INPUT class=calcbtn onclick=digit(0) value=0 name=digit0  type=button style="font-size: 20px"></INPUT></TD>
+	<TD width=2></TD>
+	<TD align=middle width=48><INPUT class=calcbtncoral onclick=if(base==10){sign()} value="+/-" name=digitPlusMinus type=button style="font-size: 20px"></INPUT></TD>
+	<TD width=2></TD>
+	<TD align=middle width=48><INPUT class=calcbtn onclick=if(base==10){period()} value="&#149;" name=digitPeriod type=button style="font-size: 20px"></INPUT></TD>
+	<TD width=2></TD>
+	<TD align=middle width=48><INPUT class=calcbtnred  onclick="emoper('+')" value="+" name=opPlus type=button style="font-size:20px"></INPUT></TD>
+	<TD width=2></TD>
+	<TD align=middle width=48><INPUT class=calcbtncoral style="font-weight: bold" onclick="emfunc('not')"  type=button value=Not name=binNot></INPUT></TD>
+	<TD width=2></TD>
+	<TD align=middle width=48><INPUT class=calcbtncoral style="font-weight: bold" onclick="emfunc('int')"  value=Int name=binInt type=button></INPUT></TD>
+	</TR>
+	</TBODY>
+	</TABLE>
+	</TD>
+	<TD WIDTH=140>
+	<FORM name=calcbtn>
+	<TABLE width=140>
+	<TBODY>
+	<TR>
+	<TD WIDTH=10></TD>
+	<TD WIDTH=48><INPUT class=calcbtn type=button onclick=openp()  value=( name=func2Openp></TD>
+	<TD WIDTH=2></TD>
+	<TD WIDTH=48><INPUT class=calcbtn type=button onclick=closep()  value=) name=func2Closep></TD>
+	<TD WIDTH=2></TD>
+	</TR>
+	<TR height=1></TR>
+	<TR>
+	<TD WIDTH=26></TD>
+	<TD WIDTH=48><INPUT class=calcbtncoral type=button onclick="emfunc('ln')"  value=ln name=funcLn></TD>
+	<TD WIDTH=2></TD>
+	<TD WIDTH=48><INPUT class=calcbtncoral type=button onclick="emfunc('n!')"  value=n! name=funcFactorial></TD>
+	<TD WIDTH=16></TD>
+	</TR>
+	<TR height=1></TR>
+	<TR>
+	<TD WIDTH=26></TD>
+	<TD WIDTH=48><INPUT class=calcbtncoral type=button onclick="emfunc('log')"  value=log name=funcLog></TD>
+	<TD WIDTH=2></TD>
+	<TD WIDTH=48><INPUT class=calcbtncoral type=button onclick="emfunc('log2')" value=log2 name=funcLog2></TD>
+	<TD WIDTH=16></TD>
+	</TR>
+	<TR height=1></TR>
+	<TR>
+	<TD WIDTH=26></TD>
+	<TD WIDTH=48><INPUT class=calcbtncoral style="background-image: url(rev.png);" type=button onclick="emfunc('1/x')" value="" name=func2OneOverX></TD>
+	<TD WIDTH=2></TD>
+	<TD WIDTH=48><INPUT class=calcbtnred type=button style="background-image: url(xy.png);" onclick="emoper('pow')" value="" name=func2XtoY></TD>
+	<TD WIDTH=16></TD>
+	</TR>
+	<TR height=1>	</TR>
+	<TR>
+	<TD WIDTH=26></TD>
+	<TD WIDTH=48><INPUT class=calcbtncoral style="background-image: url(2x.png);" type=button onclick="emfunc('2tox')" value="" name=func2toX></TD>
+	<TD WIDTH=2></TD>
+	<TD WIDTH=48><INPUT class=calcbtncoral style="background-image: url(ex.png);" type=button onclick="emfunc('etox')"  value="" name=funcEtoX></TD>
+	<TD WIDTH=16></TD>
+	</TR>
+	</TBODY>
+	</TABLE>
+	</TD>
+	<TD WIDTH=120>
+	<TABLE>
+	<TBODY>
+	<TR>
+	<TR>
+	<TD WIDTH=10></TD>
+	<TD WIDTH=48><INPUT class=calcbtncoral style="background-image: url(x2.png);" type=button onclick="emfunc('xsq')" value="" name=func2Xsq></TD>
+	<TD WIDTH=2></TD>
+	<TD WIDTH=68><INPUT class=calcbtncoral title="X add to Y, X + (X+1) + ... + Y" onclick="emoper('xaddtoy')" style="width:68px" type=button value=x...y name=emcalcXaddtoy></TD>
+	<TD WIDTH=2></TD>
+	</TR>
+	<TR height=1></TR>
+	<TR>
+	<TD WIDTH=10></TD>
+	<TD WIDTH=48><INPUT class=calcbtncoral style="background-image: url(sqrt.png);" type=button onclick="emfunc('sqrt')" value="" name=func2Sqrt></TD>
+	<TD WIDTH=2></TD>
+	<TD WIDTH=68><INPUT class=calcbtncoral style="background-image: url(sqrtn.png); width:68px" onclick="emoper('xNd')"  type=button value="" name=emcalcXnd></TD>
+	<TD WIDTH=2></TD>
+	</TR>
+	<TR height=1></TR>
+	<TR>
+	<TD WIDTH=10></TD>
+	<TD WIDTH=48><INPUT class=calcbtncoral style="background-image: url(x3.png);" onclick="emfunc('x3')" type=button value="" name=emcalcX3></TD>
+	<TD WIDTH=2></TD>
+	<TD WIDTH=68><INPUT class=calcbtncoral style="background-image: url(sqrt3.png); width:68px" onclick="emfunc('x3d')"  type=button value="" name=func2X3d></TD>
+	<TD WIDTH=2></TD>
+	</TR>
+	<TR height=1></TR>
+	<TR>
+	<TD WIDTH=10></TD>
+	<TD WIDTH=48><INPUT class=calcbtncoral onclick="emfunc('sin')"  type=button value=sin name=funcSin></TD>
+	<TD WIDTH=2></TD>
+	<TD WIDTH=68><INPUT class=calcbtncoral style="width:68px" onclick="emfunc('cos')"  type=button value=cos name=funcCos></TD>
+	<TD WIDTH=2></TD>
+	</TR>
+	<TR height=1></TR>
+	<TR>
+	<TD WIDTH=10></TD>
+	<TD WIDTH=48><INPUT class=calcbtncoral onclick="emfunc('tan')"  type=button value=tan name=funcTan></TD>
+	<TD WIDTH=2></TD>
+	<TD WIDTH=68><INPUT class=calcbtncoral style="width:68px" onclick="emfunc('cot')"  type=button value=cot name=funcCot></TD>
+	<TD WIDTH=2></TD>
+	</TR>
+	<TR height=1></TR>
+	</TBODY>
+	</TABLE>
+	</TR>
+	</TD>
+	</FORM>
+	<FORM name=btnabcdef>
+	<TR>
+	 <TD width=300>
+	 <Table>
+	 <tbody>
+	 <TR>
+		<TD align=middle width=48><INPUT class=calcbtn class=disabledbtn onclick=if(checkbase(10)){digit(10)} value=A name=hexA type=button></INPUT></TD>
+		<TD width=2></TD>
+		<TD align=middle width=48><INPUT class=calcbtn class=disabledbtn onclick=if(checkbase(11)){digit(11)} value=B name=hexB type=button></INPUT></TD>
+		<TD width=2></TD>
+		<TD align=middle width=48><INPUT class=calcbtn class=disabledbtn onclick=if(checkbase(12)){digit(12)} value=C name=hexC type=button></INPUT></TD>
+		<TD width=2></TD>
+		<TD align=middle width=48><INPUT class=calcbtn class=disabledbtn onclick=if(checkbase(13)){digit(13)} value=D name=hexD type=button></INPUT></TD>
+		<TD width=2></TD>
+		<TD align=middle width=48><INPUT class=calcbtn class=disabledbtn onclick=if(checkbase(14)){digit(14)} value=E name=hexE type=button></INPUT></TD>
+		<TD width=2></TD>
+		<TD align=middle width=48><INPUT class=calcbtn class=disabledbtn onclick=if(checkbase(15)){digit(15)} value=F name=hexF type=button></INPUT></TD>
+	</TR>
+	</Tbody>
+	</table>
+	</td>
+	</form>
+		</TR>
+</TBODY>
+</TABLE>
+<FORM name=memform>
+<TABLE width=751 class=calcplatform cellSpacing=1 cellPadding=1 border=1>
+<TBODY>
+<TR height=2></TR>
+<TR>
+<TD vAlign=center width=30>
+<A onkeypress="return false" style="CURSOR: default" onclick="emfunc('memclear1'); return false">
+<INPUT class="calcbtnyellow" type=button value=" C " style="WIDTH:50px"></INPUT>
+</A>
+</TD>
+<TD vAlign=center width=170>
+<INPUT onfocus=blur() name=meminput1 class=convertinputcontent170 style="font-size:20px; color:rgb(255, 255, 255)"></INPUT>
+</TD>
+<TD vAlign=center width=30>
+<A onkeypress="return false" style="CURSOR: default" onclick="emfunc('memplus1'); return false">
+<INPUT class="calcbtnyellow" type=button value=" M+ " style="WIDTH:50px"></INPUT>
+</A>
+</TD>
+<TD vAlign=center width=60>
+<A onkeypress="return false" style="CURSOR: default" onclick="emfunc('memrecall1'); return false">
+<INPUT class="calcbtnyellow" type=button value=" MR " style="WIDTH:50px"></INPUT>
+</A>
+</TD>
+<TD width=10></TD>
+<TD vAlign=center width=30>
+<A onkeypress="return false" style="CURSOR: default" onclick="emfunc('memclear2'); return false">
+<INPUT class="calcbtnyellow" type=button value=" C " style="WIDTH:50px"></INPUT>
+</A>
+</TD>
+<TD vAlign=center width=170>
+<INPUT onfocus=blur() name=meminput2 class=convertinputcontent170 style="font-size:20px; color:rgb(255, 255, 255)"></INPUT>
+</TD>
+<TD vAlign=center width=30>
+<A onkeypress="return false" style="CURSOR: default" onclick="emfunc('memplus2'); return false">
+<INPUT class="calcbtnyellow" type=button value=" M+ " style="WIDTH:50px"></INPUT>
+</A>
+</TD>
+<TD vAlign=center width=60>
+<A onkeypress="return false" style="CURSOR: default" onclick="emfunc('memrecall2'); return false">
+<INPUT class="calcbtnyellow" type=button value=" MR " style="WIDTH:50px"></INPUT>
+</A>
+</TD>
+</TR>
+<TR height=1></tr>
+<TR>
+<TD vAlign=center width=30><A onkeypress="return false" style="CURSOR: default" onclick="emfunc('memclear3'); return false">
+<INPUT class="calcbtnyellow" type=button value=" C " style="WIDTH:50px"></INPUT>
+</A>
+</TD>
+<TD vAlign=center width=170>
+<INPUT onfocus=blur() name=meminput3 class=convertinputcontent170 style="font-size:20px; color:rgb(255, 255, 255)"></INPUT>
+</TD>
+<TD vAlign=center width=30>
+<A onkeypress="return false" style="CURSOR: default" onclick="emfunc('memplus3'); return false">
+<INPUT class="calcbtnyellow" type=button value=" M+ " style="WIDTH:50px"></INPUT>
+</A>
+</TD>
+<TD vAlign=center width=60>
+<A onkeypress="return false" style="CURSOR: default" onclick="emfunc('memrecall3'); return false">
+<INPUT class="calcbtnyellow" type=button value=" MR " style="WIDTH:50px"></INPUT>
+</A>
+</TD>
+<TD width=10></TD>
+<TD vAlign=top colspan=4>
+<A onkeypress="return false" style="CURSOR: default" onclick="emfunc('memclearall'); return false">
+<INPUT class="calcbtnyellow" type=button value="Reset All" style="width:350px"></INPUT>
+</A>
+</TD>
+</TR>
+</TBODY>
+</TABLE>
+</FORM>
+
+</script></HTML>
